@@ -9,7 +9,7 @@ module BreadcrumbsHelper
   def breadcrumbs(page, separator: ' > ', wrapper: nil)
     hierarchy = [page]
     hierarchy.unshift hierarchy.first.parent while hierarchy.first.parent
-    hierarchy.collect {|page| wrap link_to(page.data.title, "/#{page.path}"), wrapper: wrapper }.join(h separator)
+    hierarchy.collect {|page| %{<a href="/#{page.path}">#{h page.data.title}</a>} }.join(h separator)
   end
 
   private
